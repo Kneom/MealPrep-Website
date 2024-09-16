@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}
+<title>New Workout</title>
+{% endblock %}
+
+{% block main_content %}
+<h1 class="messages">Add a new workout</h1>
+<main>
+    <section class="centered-section">
+        <form action="" method="POST" novalidate class="each-tile" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            {{ form.hidden_tag() }}
+            {{ form.workout(placeholder = "Name of Workout", class="input") }}
+            {% for error in form.workout.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.muscle_groups(placeholder = "Muscle groups targeted",class="input") }}
+            {% for error in form.muscle_groups.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.description(placeholder = "Description of workout",class="input") }}
+            {% for error in form.description.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.submit(class = "input") }}
+            <br />
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for catagory, message in messages %}
+            <p class="sub-messages">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </form>
+    </section>
+</main>
+{% endblock %}

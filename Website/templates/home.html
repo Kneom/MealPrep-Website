@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+    <h1 class="messages">Your plan for the week</h1>
+    <section>
+        {% for weekday in weekdays %}
+        <details>
+            <summary class="messages">{{ weekday["name"] }} - Total Calories: {{ session["total_cals"].get(weekday["name"], 0) }}</summary>
+            {% if session["cal"] and session["cal"] < session["total_cals"].get(weekday["name"],0) and session["goal"] == 'Loose weight' %}
+            <p class="sub-messages" id="warning">Warning your meal picks are above your desired daily calorie intake</p>
+            {% elif session["cal"] and session["cal"] > session["total_cals"].get(weekday["name"],0) and session["goal"] == 'Gain weight' %}
+            <p class="sub-messages" id="warning">Warning your meal picks are below your desired daily calorie intake</p>
+            {% endif %}
+            <!-- Add new div with details content -->
+            <div class="details-content">
+                <div class="workouts-column">
+                    {% for workout in workouts_chosen %}
+                    {% if workout["days"] == weekday["name"] %}
+                    <div class="each-tile">
+                        <h2>{{ workout["name"] }}</h2>
+                        <strong>Muscle Group(s) Worked:</strong>
+                        <p>{{ workout["muscle_group_id"] }}</p>
+                        <strong>Description</strong>
+                        <p>{{ workout["description"] }}</p>
+                        <!-- Add remove button with form -->
+                        <p id="link"><a href="{{ url_for('remove_workout', workout_id=workout['workout_id'], day=weekday['name']) }}">Remove</a></p>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="recipes-column">
+                    {% for recipe in recipes_chosen %}
+                    {% if recipe["days"] == weekday["name"] %}
+                    <div class="each-tile">
+                        <img src="{{ url_for('static', filename=recipe['image']) }}" alt="An Image" />
+                        <h2>{{ recipe["food_title"] }}</h2>
+                        <strong>Ingredients:</strong>
+                        <p>{{ recipe["ingredients"] }}</p>
+                        <strong>Instructions:</strong>
+                        <p>{{ recipe["instructions"] }}</p>
+                        <p id="cals"> Calories: {{ recipe["calories"] }}</p>
+                        <!-- Add remove button with form -->
+                        <p id="link"><a href="{{ url_for('remove_recipe', food_id=recipe['food_id'], day=weekday['name']) }}">Remove</a></p>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </details>
+        {% endfor %}
+    </section>
+</main>
+
+{% endblock %}

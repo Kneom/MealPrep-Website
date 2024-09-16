@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Workouts</title>
+{% endblock %}
+
+{% block main_content %}
+
+    <main>
+        {% if session['food_ids']|length != 0 %}
+        <nav class="nav-item" id="confirmplan">
+            <a href="{{ url_for('confirmrecipe') }}">
+                <b>Plan Your Week!</b>
+            </a>
+            {% endif %}
+        </nav>
+        <header>
+            <h1 class="messages">Choose from a wide range of recipes for your plan!</h1>
+        </header>
+        <section>
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                {{ form.filters() }}
+            </form>
+        </section>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for catagory, message in messages %}
+        <p class="sub-messages">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <section class="workout-container">
+            {% for recipe in recipes %}
+            <div class="each-tile">
+                <img src="{{ url_for('static', filename=recipe['image']) }}" alt="An Image"/>
+                <h2>{{ recipe["food_title"] }}</h2>
+                <strong>Ingredients:</strong>
+                <p>{{ recipe["ingredients"] }}</p>
+                <strong>Instructions:</strong>
+                <p>{{ recipe["instructions"] }}</p>
+                <p id="cals"> Calories: {{ recipe["calories"] }}</p>
+                <p id="link"><a href="{{ url_for('addrecipe', food_id=recipe['food_id']) }}">Add to Selection</a></p>
+            </div>
+            {% endfor %}
+        </section>
+
+    </main>
+{% endblock %}

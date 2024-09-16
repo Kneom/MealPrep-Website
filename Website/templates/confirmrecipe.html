@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Confirm Plan</title>
+{% endblock %}
+
+{% block main_content %}
+    <main class="container">
+        {% if 'food_ids' != None %}
+        <nav class="nav-item" id="confirmplan">
+            <a href="{{ url_for('recipes') }}">
+                <b>Recipe Catalogue</b>
+            </a>
+        {% endif %}
+        </nav>
+        <header>
+            <h1 class="messages">Please select the days for your meals</h1>
+        </header>
+        <p class="sub-messages">(Can add meals to multiple differrent days!)</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for catagory, message in messages %}
+        <p class="sub-messages">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <section class="workout-container">
+            {% for food_id in food_ids %}
+            <div class="each-tile">
+                <img src="{{ url_for('static', filename=images[food_id]) }}" alt="An Image"/>
+                <h2>{{ names[food_id] }}</h2>
+                <strong>Ingredients:</strong>
+                <p>{{ ingredients[food_id] }}</p>
+                <strong>Instructions:</strong>
+                <p>{{ instructions[food_id] }}</p>
+                <p id="cals"> Calories: {{ calories[food_id] }}</p>
+                <form action="" method="POST">
+                    {{ form.hidden_tag() }}
+                    <input type="hidden" name="selected_food_id" value="{{ food_id }}">
+                    {{ form.dow() }}
+                    <br>
+                    {{ form.submit1(id="dow") }}
+                    <p id="link"><a href="{{ url_for('deleterecipe', food_id=food_id) }}">Delete from Selected</a></p>
+                    <br>
+                </form>
+            </div>
+            {% endfor %}
+        </section>
+            
+    </main>
+{% endblock %}

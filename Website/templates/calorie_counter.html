@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Calorie Counter</title>
+{% endblock %}
+
+{% block main_content %}
+<main class="centered-section">
+    <section class="section-container" id="calorie-form">
+        <form action="" method="POST" novalidate>
+            <h3 class="sub-messages">Please Enter your details</h3>
+            {{ form.hidden_tag() }}
+            {{ form.weight(placeholder = "Enter your weight in kg", class="input") }}
+            {% for error in form.weight.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.height(placeholder = "Enter your height in inches",class="input") }}
+            {% for error in form.height.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.age(placeholder = "Enter your age", class="input") }}
+            {% for error in form.age.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.sex( class="input") }}            
+            {% for error in form.sex.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.activity_level( class="input") }}
+            {% for error in form.activity_level.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.goal(class="input") }}
+            {% for error in form.goal.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.submit(class = "input") }}
+        </form>
+        {% if cal %}
+        <p class="sub-messages"> Your daily calories to reach your goal are: {{ session["cal"] }}</p>
+        {% else %}
+        <p class="sub-messages">Please enter details to find out your daily calories</p>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>Preppy-Reppy</title>
+    {% endblock %}
+    <link rel="stylesheet", href= "{{ url_for('static', filename='styles.css') }}"/>
+    <script src="../static/script.js"></script>
+</head>
+<body>
+    
+    {% block nav %}
+    {% if request.path != '/' %}
+        <nav class="nav-item" id="nav">
+            <a href="{{ url_for('nav') }}">
+                <b>Nav</b>
+            </a>
+        </nav>
+    {% endif %}
+    {% endblock %}
+    {% block admin %}
+    {% if g.admin == True %}
+    {% if request.path != '/admin' %}
+    <div class="nav-item" id="admin">
+        <a href="{{ url_for('admin') }}">
+            <b>Admin</b>
+        </a>
+    </div>
+    {% endif %}
+    {% endif %}
+    {% endblock %}
+        {% block main_content %}
+
+        {% endblock %}
+</body>
+</html>
+
+<!-- Images taken from unsplash.com -->
+

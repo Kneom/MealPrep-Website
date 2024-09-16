@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Confirm Plan</title>
+{% endblock %}
+
+{% block main_content %}
+
+    <main class="container">
+        {% if 'workout_ids' != None %}
+        <nav class="nav-item" id="confirmplan">
+            <a href="{{ url_for('workout') }}">
+                <b>Workout Catalogue</b>
+            </a>
+        {% endif %}
+        </nav>
+        <header>
+            <h1 class="messages">Please select the days for your workouts</h1>
+        </header>
+        <p class="sub-messages">(Can add workouts to multiple differrent days)</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for catagory, message in messages %}
+        <p class="sub-messages">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <section class="workout-container">
+            {% for workout_id in workout_ids %}
+            <div class="each-tile">
+                <h2>{{ names[workout_id] }}</h2>
+                <strong>Muscle Group(s) Worked:</strong>
+                <p>{{ muscle_group_ids[workout_id] }}</p>
+                <strong>Description</strong>
+                <p>{{ descriptions[workout_id] }}</p>
+                <form action="" method="POST">
+                    {{ form.hidden_tag() }}
+                    <input type="hidden" name="selected_workout_id" value="{{ workout_id }}">
+                    {{ form.dow() }}
+                    <br>
+                    {{ form.submit1(id="dow") }}
+                    <p id="link"><a href="{{ url_for('deleteworkout', workout_id=workout_id) }}">Delete from Selected</a></p>
+                    <br>
+                </form>
+            </div>
+            {% endfor %}
+        </section>
+            
+    </main>
+{% endblock %}

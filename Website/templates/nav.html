@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<body id="nav-body">
+    <main>
+        {% if g.admin != True and g.user %}
+        <p class="sub-messages" >User ID : {{ session["user_id"] }}</p>
+        {% endif %}
+        <div class="nav-items">
+            <div class="nav-item" id="Plan">
+                <a href="{{ url_for('home') }}">
+                    <b>Your Plan</b>
+                </a>
+            </div>
+
+            <div class="nav-item" id="Recipes">
+                <a href="{{ url_for('recipes') }}">
+                    <b>Recipe Catalogue</b>
+                </a>
+            </div>
+
+            <div class="nav-item" id="workout">
+                <a href="{{ url_for('workout') }}">
+                    <b>Workout Catalogue</b>
+                </a>
+            </div>
+
+            <div class="nav-item" id="Calorie">
+                <a href="{{ url_for('calorie_counter') }}">
+                    <b>Calorie Calculator</b>
+                </a>
+            </div>
+
+            {% if g.user %}
+            <div class="nav-item" id="loggedout">
+                <a href="{{ url_for('loggedout') }}">
+                    <b>Logout</b>
+                </a>
+            </div>
+
+            {% if g.admin != True and g.user %}
+            <div class="nav-item" id="change-password">
+                <a href="{{ url_for('change_password') }}">
+                    <b>Change Password</b>
+                </a>
+            </div>
+            {% endif %}
+            {% else %}
+            <div class="nav-item" id="login">
+                <a href="{{ url_for('login') }}">
+                    <b>Login</b>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+    <footer><small>&copy;Copy Right of Michael McCarthy. All rights reserved</small></footer>
+</body>
+{% endblock %}

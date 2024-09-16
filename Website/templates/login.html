@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Login</title>
+{% endblock %}
+
+{% block main_content %}
+
+<main class="centered-section">
+    <section class="section-container">
+        <form action="" method="POST" novalidate >
+            <h3 class="sub-messages">Login please</h3>
+            {{ form.hidden_tag() }}
+            {{ form.user_id(placeholder = "Email", class="input") }}
+            {% for error in form.user_id.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.password0(placeholder = "Password",class="input") }}
+            {% for error in form.password0.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.submit(class = "input") }}
+        </form>
+        <p>Don't have an account?</p>
+        <a class="sub-messages" href="{{ url_for('register') }}">Create one!</a>
+    </section>
+</main>
+{% endblock %}

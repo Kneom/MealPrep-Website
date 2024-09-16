@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1 class="messages">ADMIN PAGE</h1>
+<main class="container">
+        <a href="{{ url_for('new_recipe') }}" class="each-tile">Add a new Recipe</a>
+        <a href="{{ url_for('new_workout') }}" class="each-tile">Add a new Workout</a>
+        <a href="{{ url_for('add_admin') }}" class="each-tile">Add a new Admin</a>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for catagory, message in messages %}
+        <p class="sub-messages">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+</main>
+
+
+
+{% endblock %}

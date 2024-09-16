@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}
+<title>New Recipe</title>
+{% endblock %}
+
+{% block main_content %}
+<h1 class="messages">Add a new recipe</h1>
+<main>
+    <section class="centered-section">
+        <form action="" method="POST" novalidate class="each-tile" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            {{ form.food_title(placeholder = "Name of recipe", class="input") }}
+            {% for error in form.food_title.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.ingredients(placeholder = "Ingredients",class="input") }}
+            {% for error in form.ingredients.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.instructions(placeholder = "Instructions",class="input") }}
+            {% for error in form.instructions.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.image(placeholder="Select image",class="input") }}
+            {% for error in form.image.errors %}
+            <b class="sub-message">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.calories(placeholder="Calories",class="input") }}
+            {% for error in form.calories.errors %}
+            <b class="sub-message">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.submit(class = "input") }}
+            <br />
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for catagory, message in messages %}
+            <p class="sub-messages">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </form>
+    </section>
+</main>
+{% endblock %}

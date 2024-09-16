@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Add Admin</title>
+{% endblock %}
+
+{% block main_content %}
+<main class="centered-section">
+    <section class="section-container">
+        <form action="" method="POST">
+            <h3 class="sub-messages">Add an admin account</h3>
+            {{ form.hidden_tag() }}
+            {{ form.user_id(placeholder = "Admin account name", class="input") }}
+            {% for error in form.user_id.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.password0(placeholder = "Password",class="input") }}
+            {% for error in form.password0.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br />
+            {{ form.password1(placeholder = "Re-enter Password", class="input") }}
+            {% for error in form.password1.errors %}
+            <b class="sub-messages">{{ error }}</b>
+            {% endfor %}
+            <br>
+            {{ form.submit(class = "input") }}   
+        </form>
+    </section>
+</main>
+{% endblock %}

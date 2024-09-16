@@ -1,0 +1,530 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: #6ebf44;
+  /* box-sizing: border-box; */
+}
+
+:root {
+  --bg: #222;
+  --base: #e0e0e0;
+}
+
+#nav-body {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 100vh; 
+  margin: 0; 
+}
+
+
+.nav-items {
+  display: flex;
+  gap: 50px;
+}
+
+.nav-item {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.nav-item::before {
+  content: "";
+  position: absolute;
+  inset: 30px;
+  box-shadow: 0 0 0 10px var(--base), 0 0 0 20px var(--bg), 0 0 0 22px var(--base);
+  transition: 0.5s;
+}
+
+.nav-item:hover::before {
+  inset: 15px;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  transform: rotate(45deg);
+  transition: 0.5s;
+}
+
+.nav-item:hover::after {
+  inset: 0px;
+  transform: rotate(0deg);
+  display: block;
+}
+
+.nav-item a {
+  position: relative;
+  text-decoration: none;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: block;
+}
+
+.nav-item a i {
+  font-size: 2em;
+  transition: 0.5s;
+  color: var(--base);
+  opacity: 1;
+}
+
+.nav-item:hover a i {
+  color: var(--base);
+  transform: translateY(-40%);
+}
+
+.nav-item a span {
+  position: absolute;
+  font-family: sans-serif;
+  color: var(--base);
+  opacity: 0;
+  transition: 0.5s;
+  transform: scale(0) translateY(100%);
+}
+
+.nav-item:hover a span {
+  opacity: 1;
+  transform: scale(1) translateY(100%);
+}
+
+.nav-item:hover a i,
+.nav-item a span {
+  filter: drop-shadow(0 0 20px var(--base)) drop-shadow(0 0 40px var(--base)) drop-shadow(0 0 60px var(--base));
+}
+
+input:focus {
+  outline: 2px solid #6ebf44;    
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input::placeholder {
+  color: #6ebf44;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+input:focus {
+  outline: 2px solid #6ebf44;    
+}
+
+input[type="radio"]:checked + label{
+  background-color: #58ba83;
+}
+
+
+.section-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input[type="radio"]{
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+}
+.messages{
+  border: 3px solid #e0e0e0;
+  padding: 1em;
+  border-radius: 4em;
+  box-shadow: 10px 10px 10px 10px black;
+  margin: 2em;
+  margin-right: 10em;
+  margin-left: 10em;
+  text-align: center;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+header{
+  display: flex;
+  justify-content: center;
+}
+.sub-messages{
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+}
+
+#nav {
+  position: absolute; 
+  top: 40px; 
+  right: 40px; 
+}
+#confirmplan, #confirmworkout {
+  position: absolute; 
+  top: 240px; 
+  right: 40px; 
+}
+label{
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  background-color: #454545;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  min-width: 150px;
+  transition: all .3s ease-out;
+  margin-left: 1em;
+  box-shadow: 10px 10px 4px black;
+}
+#filters{ 
+  list-style-type: none;
+  position: absolute;
+}
+
+.workout-container, .weekday-container{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 40px;
+  max-width: 70%;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 2em;
+}
+
+details {
+  display: block;
+  position: relative;
+}
+
+details summary::-webkit-details-marker {
+  display:none;
+}
+
+.each-tile {
+  border: 3px solid #e0e0e0;
+  padding: 2em;
+  border-radius: 4em;
+  box-shadow: 10px 10px 10px 10px black;
+  text-align: center;
+  margin: 2em;
+  min-width: 400px;
+}
+#link{
+  padding: 1em;
+  border-radius: 2em;
+  box-shadow: 10px 2px 2px 5px black;
+  margin-top: 2em;
+  text-align: center;
+}
+#dow{
+  padding: 1em;
+  border-radius: 2em;
+  color: #6ebf44;
+  background-color: black;
+  box-shadow: 10px 2px 2px 5px black;
+  margin: 1em;
+  text-align: center;
+} 
+.input{
+  padding: 2em;
+  border-radius: 3em;
+  color: #6ebf44;
+  background-color: black;
+  box-shadow: 10px  5px black;
+  min-width: 250px;
+  margin-bottom: 1.5em;
+}
+
+img{
+  width: 200px;
+  height: 200px;
+  border-radius: 3em;
+}
+.section-container{
+  border: 3px solid #e0e0e0;
+  padding: 3em;
+  border-radius: 4em;
+  box-shadow: 10px 10px 10px 10px black;
+  max-width: 512px;
+  text-align: center;
+}
+.centered-section{
+  display: flex;
+  justify-content: center;
+}
+
+#calorie-form{
+  max-height: 865px;
+  overflow: auto;
+}
+#admin{
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+footer {
+  position: absolute;
+  text-align: center;
+  bottom: 0px;
+  margin: 1em;
+}
+
+#user_id{
+  align-items: center;
+}
+#cals{
+  color: #58ba83;
+}
+#warning{
+  color: red;
+}
+.details-content {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  max-width: 900px; /* Adjust this value as needed */
+  margin: 0 auto; /* Center horizontally */
+}
+
+.workouts-column,
+.recipes-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items vertically */
+}
+/* #workoutbody{
+  display: block;
+}
+
+main{
+  display: block;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.error {
+  margin-top: 1em;
+  margin: 1em;
+}
+
+
+#confirmplan, #confirmworkout {
+  display: flex;
+  justify-content: center;
+  position: fixed; 
+  top: 240px; 
+  right: 40px; 
+}
+
+.weekday-container{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
+.input{
+  padding: 2.5em;
+  border-radius: 3em;
+  color: #6ebf44;
+  background-color: black;
+  box-shadow: 10px  5px black;
+  min-width: 250px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5em;
+}
+#workoutbody{
+  display: flex;
+  justify-content: center;
+}
+
+
+b {
+  color: #6ebf44;
+}
+
+input:focus {
+  outline: 2px solid #6ebf44;    
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input::placeholder {
+  color: #6ebf44;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.message{
+  border: 3px solid #e0e0e0;
+  padding: 2em;
+  border-radius: 4em;
+  box-shadow: 10px 10px 4px black;
+  color: #6ebf44;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container{
+  border: 3px solid #e0e0e0;
+  padding: 0.5em;
+  border-radius: 4em;
+  box-shadow: 10px 10px 10px 10px black;
+  overflow: auto;
+  color: #6ebf44;
+  margin: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.container > h3 {
+  color: #6ebf44;
+  text-align: center;
+  margin-bottom: 1em;
+}
+section{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
+
+.workout-container, .weekday-container{
+  border: 3px solid #e0e0e0;
+  padding: 0.5em;
+  border-radius: 4em;
+  box-shadow: 10px 10px 10px 10px black;
+  overflow: auto;
+  color: #6ebf44;
+  margin: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.catalogue {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+h1 {
+  border: 3px solid #e0e0e0;
+  padding: 2em;
+  border-radius: 4em;
+  box-shadow: 10px 10px 4px black;
+  margin-top: 40px;
+  margin-left: 7.5em;
+  margin-right: 7.5em;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #6ebf44;
+}
+
+
+.workout-container{
+  max-width: 512px;
+}
+
+.message{
+  margin: 1em;
+  max-width: 300px;
+}
+
+input[type="radio"]{
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+input[type="radio"]:checked + label{
+  background-color: #58ba83;
+}
+
+
+
+#filters{
+  position: absolute;
+  min-width: 200px;
+  list-style-type: none;
+}
+
+#link{
+  padding: 1em;
+  border-radius: 2em;
+  color: #6ebf44;
+  box-shadow: 10px 2px 2px 5px black;
+  margin-top: 2em;
+  text-align: center;
+  
+}
+a {
+  text-decoration: none; 
+  color: inherit; 
+  display: block;
+}
+
+a:hover {
+  text-decoration: none; 
+}
+
+a:active {
+  color: inherit; 
+}
+
+.homeworkout-container{
+  border: 3px solid #e0e0e0;
+  padding: 2em;
+  border-radius: 4em;
+  box-shadow: 10px 10px 4px black;
+  overflow: auto;
+  color: #6ebf44;
+  margin: 1em;
+  max-width: 250px;
+  align-items: center;
+  text-align: center;
+}
+
+#dow{
+  padding: 1em;
+  border-radius: 2em;
+  color: #6ebf44;
+  background-color: black;
+  box-shadow: 10px 2px 2px 5px black;
+  margin-top: 2em;
+  text-align: center;
+  display: flex;
+} */
