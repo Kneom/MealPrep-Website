@@ -178,20 +178,9 @@ pip install flask flask-wtf flask-session werkzeug
 
 (If you later add one, you can freeze with `pip freeze > requirements.txt` and then use `pip install -r requirements.txt`.)
 
-### 5. (Optional) Create a `.env` File
-Instead of exporting environment variables every time, you can place them in `.env` (if using something like `python-dotenv`):
+### 5. Flask Run
 
 ```
-FLASK_APP=Website.app
-FLASK_ENV=development
-SECRET_KEY=change_me_dev
-```
-
-```bash
-export FLASK_APP=Website.app
-export FLASK_ENV=development
-# Recommended to override secret key in production:
-export SECRET_KEY="change_me"
 flask run
 ```
 
