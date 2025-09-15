@@ -137,7 +137,55 @@ Because server-side session persists as files, clear them if debugging inconsist
 
 ---
 
-## Running the App
+## Running the App (Quick Start)
+
+Below are exact end‑to‑end steps to get the web app running locally.
+
+### 1. Prerequisites
+- Python 3.9+ installed (`python --version`)
+- Git installed
+- (Optional) A virtual environment (recommended)
+
+### 2. Clone the Repository
+```bash
+git clone https://github.com/mccarthy-michael/MealPrep-Website.git
+cd MealPrep-Website
+```
+
+### 3. Create & Activate a Virtual Environment (Recommended)
+
+Linux / macOS:
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+Windows (PowerShell):
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+(Deactivate later with `deactivate`.)
+
+### 4. Install Dependencies
+
+If a `requirements.txt` does not yet exist, install core libraries directly:
+
+```bash
+pip install flask flask-wtf flask-session werkzeug
+```
+
+(If you later add one, you can freeze with `pip freeze > requirements.txt` and then use `pip install -r requirements.txt`.)
+
+### 5. (Optional) Create a `.env` File
+Instead of exporting environment variables every time, you can place them in `.env` (if using something like `python-dotenv`):
+
+```
+FLASK_APP=Website.app
+FLASK_ENV=development
+SECRET_KEY=change_me_dev
+```
 
 ```bash
 export FLASK_APP=Website.app
